@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ABRE Software</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      #map {
+        height: 100%;
+        width: 100%;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      input {
+        height: 35px;
+        width: 45%;
+        text-align: left;
+        border-style: solid;
+        border-width: 1px;
+        font-size: 12px;
+        font-weight: bold;
+        overflow: hidden;
+        display: inline-block;
+      }
+      .d {
+        width: 30%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        display: inline-block;
+        overflow: hidden;
+      }
+      .submit {
+        font-size: 20px;
+        width: 45%;
+        text-align: center;
+        color: #1DA1F2;
+        background-color: white;
+        border-color: #1DA1F2;
+        transition-duration: .4s; 
+      }
+      .submit:hover {
+        font-size: 20px;
+        width: 45%;
+        background-color: #1DA1F2;
+        color: white;
+      }
+      .tab {
+        width: 65%;
+        text-align: center;
+        border: solid;
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='d'>
+      <form action="/results" method="GET">
+      <input type="text" placeholder="Address, neighborhood, or ZIP" name="search">
+      <input class='submit' type="submit">
+      </form>
+    </div>
+    <table class="tab">
+      <tr>
+        <th>Location</th>
+        <th>AVG $/SqFt</th>
+        <th>AVG Days on Market</th>
+        <th>% College Educated</th>
+        <th>AVG Income</th>
+        <th>Major Employers</th>
+        <th>Population</th>
+        <th>Job Growth</th>
+        <th>AVG list to close price</th>
+      </tr>
+      <tr>
+        <td>80204</td>
+        <td>$438,461</td>
+        <td>67</td>
+        <td>70.5%</td>
+        <td>$57,519</td>
+        <td>UNKNOWN</td>
+        <td>34,098</td>
+        <td>UNKNOWN</td>
+        <td>1:1</td>
+      </tr>
+    </table>
+    <div id="map"></div>
+    <script>
+      var map;
+      function initMap() { 
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 39.7348, lng: -105.0204},
+          zoom: 13
+        });
+
+      var flightPlanCoordinates = [
+        {lat: 39.743931, lng: -105.053201},
+        {lat: 39.743951, lng: -105.035770},
+        {lat: 39.746327, lng: -105.035773},
+        {lat: 39.746327, lng: -105.036919},
+        {lat: 39.747536, lng: -105.036919},
+        {lat: 39.747577, lng: -105.022019},
+        {lat: 39.748786, lng: -105.022019},
+        {lat: 39.748784, lng: -105.020505},
+        {lat: 39.747589, lng: -105.020505},
+        {lat: 39.747550, lng: -105.018977},
+
+        {lat: 39.745666, lng: -105.018923},
+        {lat: 39.743442, lng: -105.017142},
+        {lat: 39.744459, lng: -105.016219},
+        {lat: 39.749956, lng: -105.015393},
+        {lat: 39.754775, lng: -105.008202},
+        {lat: 39.753060, lng: -105.008184},
+        {lat: 39.750203, lng: -105.004789},
+        {lat: 39.750653, lng: -105.004203},
+        {lat: 39.749246, lng: -105.002389},
+        {lat: 39.747806, lng: -105.001540},
+
+        {lat: 39.745511, lng: -105.000399},
+        {lat: 39.746647, lng: -104.998965},
+        {lat: 39.745969, lng: -104.998070},
+        {lat: 39.745040, lng: -104.999241},
+        {lat: 39.743697, lng: -104.997533},
+        {lat: 39.742275, lng: -104.999339},
+        {lat: 39.741393, lng: -104.998828},
+        {lat: 39.742170, lng: -104.998180},
+        {lat: 39.740801, lng: -104.996147},
+        {lat: 39.742635, lng: -104.993716},
+
+        {lat: 39.741963, lng: -104.992864},
+        {lat: 39.741028, lng: -104.994045},
+        {lat: 39.740399, lng: -104.993182},
+        {lat: 39.741281, lng: -104.991977},
+        {lat: 39.740617, lng: -104.991137},
+        {lat: 39.740172, lng: -104.991648},
+        {lat: 39.738433, lng: -104.991648},
+        {lat: 39.738425, lng: -104.990239},
+        {lat: 39.736852, lng: -104.990239},
+        {lat: 39.736834, lng: -104.987433},
+
+        {lat: 39.735301, lng: -104.987399},
+        {lat: 39.735236, lng: -104.988858},
+        {lat: 39.733874, lng: -104.988858},
+        {lat: 39.733841, lng: -104.987413},
+        {lat: 39.726697, lng: -104.987420},
+        {lat: 39.727291, lng: -104.988785},
+        {lat: 39.725659, lng: -104.988854},
+        {lat: 39.725626, lng: -104.987423},
+        {lat: 39.722548, lng: -104.987516},
+        {lat: 39.722526, lng: -104.993987},
+
+        {lat: 39.724130, lng: -104.994019},
+        {lat: 39.724106, lng: -104.995190},
+        {lat: 39.722526, lng: -104.995190},
+        {lat: 39.722494, lng: -105.000180},
+        {lat: 39.720971, lng: -105.000212},
+        {lat: 39.725644, lng: -105.003607},
+        {lat: 39.725656, lng: -105.005767},
+        {lat: 39.720927, lng: -105.005546},
+        {lat: 39.720927, lng: -105.006229},
+        {lat: 39.725355, lng: -105.006650},
+
+        {lat: 39.725356, lng: -105.007491},
+        {lat: 39.721319, lng: -105.007479},
+        {lat: 39.720946, lng: -105.007033},
+        {lat: 39.720927, lng: -105.008345},
+        {lat: 39.724886, lng: -105.012893},
+        {lat: 39.723749, lng: -105.012422},
+        {lat: 39.722720, lng: -105.010944},
+        {lat: 39.720927, lng: -105.011619},
+        {lat: 39.720878, lng: -105.012072},
+        {lat: 39.720231, lng: -105.012150},
+
+        {lat: 39.720266, lng: -105.013167},
+        {lat: 39.722066, lng: -105.013182},
+        {lat: 39.722054, lng: -105.018632},
+        {lat: 39.723890, lng: -105.018663},
+        {lat: 39.723864, lng: -105.020980},
+        {lat: 39.722904, lng: -105.020972},
+        {lat: 39.722886, lng: -105.022112},
+        {lat: 39.722492, lng: -105.022116},
+        {lat: 39.722487, lng: -105.025076},
+        {lat: 39.721356, lng: -105.025095},
+
+        {lat: 39.721337, lng: -105.028794},
+        {lat: 39.722906, lng: -105.028825},
+        {lat: 39.722948, lng: -105.043947},
+        {lat: 39.722142, lng: -105.043947},
+        {lat: 39.722325, lng: -105.053264},
+        {lat: 39.733100, lng: -105.053209},
+        {lat: 39.733106, lng: -105.054109},
+        {lat: 39.734532, lng: -105.054125},
+        {lat: 39.734538, lng: -105.053256},
+        {lat: 39.741923, lng: -105.053217},
+
+        {lat: 39.741935, lng: -105.052069},
+        {lat: 39.742699, lng: -105.052085},
+        {lat: 39.742687, lng: -105.053202},
+        {lat: 39.743931, lng: -105.053201}
+      ];
+      var flightPath = new google.maps.Polygon({
+        path: flightPlanCoordinates,
+        geodesic: true,
+        strokeColor: '#eba434',
+        strokeOpacity: 1.0,
+        strokeWeight: 2,
+        fillColor: '#eba434',
+        fillOpacity: 0.35
+    });
+    flightPath.setMap(map);
+
+    var marker1 = new google.maps.Marker({position: {lat: 39.744684, lng: -105.032707}, map: map});
+    marker1.setLabel('1728 King St');
+    var marker2 = new google.maps.Marker({position: {lat: 39.733660, lng: -105.027227}, map: map});
+    marker2.setLabel('1034 Hazel Ct');
+    var marker3 = new google.maps.Marker({position: {lat: 39.736255, lng: -105.049963}, map: map});
+    marker3.setLabel('1261 Xavier St');
+    var marker4 = new google.maps.Marker({position: {lat: 39.726471, lng: -104.997311}, map: map});
+    marker4.setLabel('644 Inca Street');
+
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4n3vNlINUiRKrmYF4UQd7ERgM8C4SQUU&callback=initMap"
+    async defer></script>
+  </body>
+</html>
